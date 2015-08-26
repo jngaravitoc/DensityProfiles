@@ -1,32 +1,84 @@
-\documentclass[12pt]{article}
-\usepackage[hmargin=2.0cm,vmargin=1cm]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{cite}
-\usepackage{natbib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 12pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+\usepackage[top=1in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{caption}
 \usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
 
-\title{\begin{LARGE}
-{$\Delta_{vir}$}
-\end{LARGE}}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
 
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Density profiles}} % Subtitle
+
+%\author{\textsc{Juan Nicol\'as Garavito Camargo } % Author
+%\\{\textit{Departamento de F\'isica\\}
+%\textit{Universidad de los Andes, Bogot\'a, Colombia}}} % Institution
+
+\date{August, 2015} % Date
+
+%----------------------------------------------------------------------------------------
 \begin{document}
+
 \maketitle
 
 
 \section{Useful Quantities and definitions}
 
 In this section some common quantities useful for describe the denstites profile
-are defined and explained. 
+are defined and explained.
 
 
 \subsection{Critical density of the Universe:}
 
 \subsection{Virialization}
 
-A dark matter halo is virialized when its in equilibrium, such 
-an equilibrium occurs after the dark matter have collapsed and 
+A dark matter halo is virialized when its in equilibrium, such
+an equilibrium occurs after the dark matter have collapsed and
 the force of gravity equals the \textbf{relaxtion} processes
 (Binney \& Tremaine pag 380).
 
@@ -35,9 +87,9 @@ the force of gravity equals the \textbf{relaxtion} processes
 you can define a $r_{vir}$}
 
 A halo can be characterized using and overdensity $\Delta{vir}$
-defined as ratio of the density of a virialized halo over the critical 
+defined as ratio of the density of a virialized halo over the critical
 density of the Universe $\Delta_{vir} = \frac{\rho_{vir}}{\rho_c}$.
-For a cosmolgy with ($\Omega_m + \Omega_{\Lambda} = 1$) 
+For a cosmolgy with ($\Omega_m + \Omega_{\Lambda} = 1$)
 \begin{equation}
 \Delta_{vir} = (18 \pi^2 + 82x - 39x^2)/\Omega(z) 
 \end{equation}
@@ -55,7 +107,7 @@ For the present time ($z=0$)  $\Delta_{vir}=360$.
 
 
 This overdensity is enclosed in a volume which can be charcterized
-with a radius $r_{vir}$ which correspond to a $M_{vir}$ given 
+with a radius $r_{vir}$ which correspond to a $M_{vir}$ given
 $\Delta_{rvir}$
 
 \begin{equation}
@@ -85,12 +137,12 @@ Matching $rho_c$ for the above two equations we get.
 \dfrac{M_{200}}{M_{vir}} = \left(  \dfrac{200}{ \Delta_{vir} \Omega_m}  \right) \left( \dfrac{r_{200}}{r_{vir}}  \right)^3
 \end{equation}
 
-Here is common to call $q = \left(  \dfrac{200}{ \Delta_{vir} \Omega_m}  \right) $ at $z=0$ $q=2.053$ 
+Here is common to call $q = \left(  \dfrac{200}{ \Delta_{vir} \Omega_m}  \right) $ at $z=0$ $q=2.053$
 
 \begin{equation}
 \dfrac{M_{200}}{M_{vir}} = q \left( \dfrac{r_{200}}{r_{vir}}  \right)^3
-\end{equation} 
- 
+\end{equation}
+
 
 \section{Densities profiles}
 
@@ -101,14 +153,14 @@ a constant density near the center and falls at large radius.
 
 \begin{equation}
 \rho_P (r) = \frac{3M}{4\pi a^3} (1 + \frac{r^2}{a^2})^{-5/2}
-\end{equation} 
+\end{equation}
 
 Where $a$ is call the scale length. The scale length set the length $a$ in which the mayority of the density is enclosed. Note
-that if $a$ is cero the plummer potential would be exactly as the potential of a point mass. 
+that if $a$ is cero the plummer potential would be exactly as the potential of a point mass.
 In the other hand if $a$ goes to infty the potential is rewpresenting a very extended mass source.
 In other words the scale length set up the size of the volume in which the mass $M$ is enclosed.
 
-The enclosed mass can be derived from the density by integrating over a volume. 
+The enclosed mass can be derived from the density by integrating over a volume.
 
 \begin{equation}
 M_P(<r) = 4 \pi \int_0^r r'^2\frac{3M}{4\pi a^3} (1 + \frac{r'^2}{a^2})^{-5/2} dr' = \frac{3M}{a^3} \left( \frac{a^4 r^3 \sqrt{r^2/a^2 + 1}}{3(r^2 + a^2)^2}  \right)
@@ -118,13 +170,119 @@ M_P(<r) = 4 \pi \int_0^r r'^2\frac{3M}{4\pi a^3} (1 + \frac{r'^2}{a^2})^{-5/2} d
 M_P(<r) = M \frac{r^3}{(a^2+r^2)^{3/2}}
 \end{equation}
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{plummer_density.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{plummer_mass.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{plummer_phi.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{plummer_velocity.png}
+\end{figure}
+
+
 
 \subsection{Hernquist}
 
+The Hernquist profile is derived in such a way that it follows the 
 
-\subsection{Isothermal}
+\begin{equation}
+\rho_{Hernquist}(r) =  \frac{M}{2\pi} \frac{a}{r(r+a)^3}
+\end{equation}
+
+\begin{equation}
+M_{Hernquist}(<r) = 2aM \int \frac{r}{(r+a)^3}dr
+\end{equation}
+
+\begin{equation}
+M_{Hernquist}(<r) = M \frac{r^2}{(r+a)^2}
+\end{equation}
+
+\begin{equation}
+\Phi = - \frac{GM}{r+a}
+\end{equation}
+
+\begin{equation}
+v_c(r) = GM \frac{r}{(r+a)^2}
+\end{equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{hern_density.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{hern_potential.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{hern_mass.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{hern_velocity.png}
+\end{figure}
+
+
+\subsection{Singular Isothermal Sphere}
+
+The Singular Isothermal Sphere (\textbf{SIS}) describes a system in which the particles follow
+a Maxwellian density distribution. With this distribution and the Poisson equation the follow
+density profiles could be derived.
+
+
+\begin{equation}
+\rho_{iso}(r) = \dfrac{\sigma ^2}{2\pi G r^2}
+\end{equation}
+
+Following the same procedure as with the previuos profiles we find $M, \Phi$  and $v_c$.
+
+\begin{equation}
+M_{iso}(<r) = \dfrac{2 \sigma r}{G}
+\end{equation}
+
+\begin{equation}
+\Phi_{iso}(r) = 2 \sigma^2 ln(r)  + const.
+\end{equation}
+
+\begin{equation}\label{eq:SISv}
+v_c(r) = \sqrt{2}\sigma
+\end{equation}
+
+This profile is quite different to the previous ones due to the fact that here the input is
+the velocity instead of the total Mass.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{sis_density.png}
+\end{figure} 
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{sis_mass.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{sis_phi.png}
+\end{figure}
+
 
 \subsection{NFW}
+
 
 
 \end{document}
