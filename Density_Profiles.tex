@@ -284,5 +284,55 @@ the velocity instead of the total Mass.
 \subsection{NFW}
 
 
+\begin{equation}
+\rho_{NFW}(r) = \dfrac{M}{2\pi a^3(r/a) (1 + r/a)^2}
+\end{equation}
+
+
+\begin{equation}
+M_{NFW}(r) = 2 M  \left(  ln(1 + c) - \frac{c}{1 + c} \right)
+\end{equation}
+
+\begin{equation}
+\Phi_{NFW} = -4\pi G M \frac{ln(1 + r/a)}{r}
+\end{equation}
+
+\begin{equation}
+c(M_{vir}) = 9.60  \left( \frac{M_{vir}}{10^{12}h^{-1}M_{\odot}} \right)^{-0.075}
+\end{equation}
+
+
+
+\begin{equation}
+v_c(r) = \sqrt{\left(\dfrac{M(r)G}{r}\right)} = \sqrt{\left( \dfrac{2 M  \left(  ln(1 + c) - \frac{c}{1 + c} \right)}{r} \right)}
+\end{equation}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{NFW_density.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{NFW_mass.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{NFW_potential.png}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{NFW_vc.png}
+\end{figure}
+
+
+
+\section{Conversion from NFW to the Hernquist profile}
+
+
+
 
 \end{document}
