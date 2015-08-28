@@ -364,19 +364,52 @@ q = \dfrac{3 \rho_a \dfrac{a}{r_{200}} f(c_{200})}{3 \rho_a \dfrac{a}{r_{vir}}f(
 \end{equation}
 
 
-\begin{equation}
+\begin{equation}\ref{eq:c200cvir}
 \dfrac{c_{200}}{c_{vir}} = \left( \dfrac{f(c_{200})}{qf(c_{vir})} \right)^{1/3}
 \end{equation}
 
-\begin{figure}[H]
+For $c_{vir} = 10$ this function is shown in Fig.\ref{fig:c200cvir}, where 
+$y = \dfrac{c_{200}}{c_{vir}} - \left( \dfrac{f(c_{200})}{qf(c_{vir})} \right)^{1/3}$
+
+\begin{figure}[H]\label{fig:c200cvir}
 \centering
 \includegraphics[scale=0.7]{c200cvir.png}
 \end{figure}
+
+Note that the solution of Eq.\ref{eq:c200cvir} is when $y=0$, one 
+solution is $c_{200}=0$ but this is not of particular interest for us. 
+
+The other solution is computed analytically using the bisection algorithm.
+$c_{200} = 7.4$
 
 
 
 \section{Miyamoto-Nagai Disk}
 
+\section{TO-DO:}
 
+\begin{itemize}
+
+\item Study the properties and different parameters ($M, /pho, v_c, a$)
+
+\item Plummer
+\item Henrquist
+\item Isothermal
+\item NFW
+\item Miyamoto-Nagai
+\item Exponential
+\item Jhonston and Bullock 2005 (Logarithmic)
+\item Besla 2007
+\item Law \& Majewusky 2010 triaxial
+
+\item Try to reproduce MW rotation curve van Der Marel 2012 ($M_{vir}$ \& $c$ )
+
+
+\item note: Klypin relation between $c$ and $M_{vir}$ Doesn't take into 
+account adiabatic contraction. 
+
+\item work in the code that integrates the orbitas using the accelerations. 
+
+\end{itemize}
 
 \end{document}
