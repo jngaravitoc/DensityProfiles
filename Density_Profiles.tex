@@ -30,6 +30,7 @@
 \usepackage{float}
 \usepackage{mathpazo} % Use the Palatino font
 \usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{cancel}
 \linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
 
 \makeatletter
@@ -382,9 +383,90 @@ solution is $c_{200}=0$ but this is not of particular interest for us.
 The other solution is computed analytically using the bisection algorithm.
 $c_{200} = 7.4$
 
+In order to seek the equivalence between the NFW and the Hernquist profile, 
+We have to match the same enclosed mass of both profiles at a given radius.
+To his end we have to find $M_H$ in terms of $r_s$. 
 
+\begin{equation}
+M_H(r) = M_{NFW}(r)
+\end{equation}
+
+\begin{equation}
+\frac{M_H r^2}{a^2 + r^2} = 4 \pi \rho_s r_s^3 \left[ Ln(1 + x) - \frac{x}{1+x}  \right]
+\end{equation}
+
+In the limit $r \rightarrow 0$ 
+
+\begin{equation}
+M_H = \dfrac{4 \pi \rho_s r_s^3 a^2}{r^2} \left[ (x - \dfrac{x^2}{2}) - x  \right]
+\end{equation}
+
+\begin{equation}
+M_H = 4 \pi \rho_s r_s^3 \dfrac{a^2}{r^2} \left(  - \dfrac{r^2}{2r_s^2} \right)
+\end{equation}
+
+\begin{equation}
+M_H = 2 \pi r_s a^2
+\end{equation}
+ 
+With this relation is possible now to match both profiles at a given radius $\tilde{r}$ 
+
+\begin{equation}
+M_H(\tilde{r}) = M_{NFW}(\tilde{r}) 
+\end{equation}
+
+\begin{equation}
+2 \pi \rho_s a^2 r_s \dfrac{\tilde{r}^2}{a^2} \dfrac{1}{\left( 1 + \dfrac{\tilde{r}}{a}\right)^2} = 4 \pi \rho_s r_s^3 \left( Ln \left(1 + \dfrac{\tilde{r}}{r_s} \right)  - \dfrac{\tilde{r}}{\tilde{r} + r_s} \right)
+\end{equation}
+
+\begin{equation}
+\dfrac{\tilde{r}^2 a^2}{(a + \tilde{r})^2} = 2 r_s^2 \left( Ln \left (1 +  \dfrac{\tilde{r}}{r_s} \right)  - \dfrac{\tilde{r}}{\tilde{r} + r_s}   \right)
+\end{equation}
+
+
+\begin{equation}
+\dfrac{\tilde{r}^2 a^2}{(a + \tilde{r})^2} = 2 r_s^2 f(\tilde{x})
+\end{equation}
+
+\begin{equation}
+\left( \frac{a}{r_s} \right)^2 = \dfrac{2}{\tilde{r}^2} (a + \tilde{r})^2 f(\tilde{x})
+\end{equation}
+
+
+
+
+\begin{equation}
+\dfrac{a}{r_s} = \dfrac{[2 f(\tilde{x})]^{1/2}}{\tilde{r}} (a + \tilde{r})
+\end{equation}
+
+\begin{equation}
+\left( \dfrac{a}{r_s} \right) \left( 1 -  \dfrac{[2 f(\tilde{x})]^{1/2}}{\tilde{x}} \right) = [2 f(\tilde{x})]^{1/2} 
+\end{equation}
+
+\begin{equation}
+\dfrac{a}{r_s} = \dfrac{[2 f(\tilde{x})]^{1/2}}{ \left( 1 -  \dfrac{[2 f(\tilde{x})]^{1/2}}{\tilde{x}} \right)}
+\end{equation}
+
+\begin{equation}
+\dfrac{a}{r_s} = \dfrac{[2 f(\tilde{x})]^{1/2} \tilde{x}}{\tilde{x} - (2f(\tilde{x})^{1/2})} = \dfrac{1}{\left(  [2 f(\tilde{x})]^{-1/2} - \dfrac{1}{\tilde{x}}  \right)}
+\end{equation}
+
+Finally the ratio of the enclosed mass of the Hernquist and the NFW profiles is: 
+
+\begin{equation}
+\dfrac{M_H}{M_{vir}} = \dfrac{2 \pi \rho_s a^2 r_s}{4 \pi \rho_s r_s^3 f(c_{vir})} = \dfrac{1}{2 f(c_{vir})}  \left( \dfrac{a}{r_s}\right)^2
+\end{equation}
 
 \section{Miyamoto-Nagai Disk}
+
+\begin{equation}
+\Phi_M (R, z) = - \dfrac{GM}{\sqrt{R^2 + (a + \sqrt(z^2 + b^2))^2}}
+\end{equation}
+
+\begin{equation}
+\rho_M (R, Z) = \left( \dfrac{b^2 M}{4 \pi} \right) \dfrac{aR^2 + (a + 3\sqrt{z^2+b^2})(a + \sqrt{z^2+b^2})^2}{[R^2 + (a^2 + \sqrt{z^2+b^2})^2]^{5/2}(z^2+b^2)^{3/2} }
+\end{equation}
+
 
 \section{TO-DO:}
 
@@ -396,19 +478,19 @@ $c_{200} = 7.4$
 \item Henrquist
 \item Isothermal
 \item NFW
-\item Miyamoto-Nagai
-\item Exponential
-\item Jhonston and Bullock 2005 (Logarithmic)
-\item Besla 2007
-\item Law \& Majewusky 2010 triaxial
+\item Miyamoto-Nagai (Lunes)
+\item Exponential (Martes)
+\item Jhonston and Bullock 2005 (Logarithmic) (Martes)
+\item Besla 2007 (Miercoles)
+\item Law \& Majewusky 2010 triaxial (Miercoles)
 
-\item Try to reproduce MW rotation curve van Der Marel 2012 ($M_{vir}$ \& $c$ )
+\item Try to reproduce MW rotation curve van Der Marel 2012 ($M_{vir}$ \& $c$ ) (Jueves)
 
 
 \item note: Klypin relation between $c$ and $M_{vir}$ Doesn't take into 
 account adiabatic contraction. 
 
-\item work in the code that integrates the orbitas using the accelerations. 
+\item work in the code that integrates the orbits using the accelerations. (Viernes)
 
 \end{itemize}
 
