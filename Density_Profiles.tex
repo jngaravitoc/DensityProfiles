@@ -468,6 +468,59 @@ Finally the ratio of the enclosed mass of the Hernquist and the NFW profiles is:
 \end{equation}
 
 
+\section{Logarithmic Profile}
+
+\begin{equation}
+\Phi_L = \dfrac{1}{2} v_0^2 ln \left( R_c^2 + r^2 + \dfrac{z^2}{q_{\phi}^2}  \right) + constant
+\end{equation}
+
+The circular velocity at $z=0$ is:
+
+\begin{equation}
+v_c = r \dfrac{d \Phi_L}{dr} = \dfrac{v_0 r}{\sqrt{r_c^2 + r^2}}
+\end{equation}
+
+
+
+\begin{equation}
+\rho_L(r, z) =  \dfrac{v_0^2}{4 \pi G q_{\phi}^2} \dfrac{(2q_{\phi}^2 + 1)R_c^2 + r^2 + (2 - q_{\Phi^2})z^2}{(R_c^2 + r^2 + z^2q_{\Phi}^{-2})^2}
+\end{equation}
+
+
+\section{Logarithmic profile (Law, Johnston \& Majewski)}
+
+\begin{equation}
+\Phi = v^2_{halo} ln[r^2 + (z^2/q^2) + d^2]
+\end{equation}
+
+\begin{equation}
+v_c = \dfrac{\sqrt{2}vr}{\sqrt{r^2 + d^2}}
+\end{equation}
+
+with $q=0.8-1.45$, $v_{halo}$ should match $v_{circ, \odot}$, $d=1-20kpc$
+
+
+\section{Logarithmic (Law \$ Majewski)}
+\verb+http://iopscience.iop.org/0004-637X/714/1/229/pdf/apj_714_1_229.pdf+
+
+\begin{equation}
+\Phi = v^2_{halo} ln(C_1 x^2 + C_2y^2 + C_3 xy + (z/q_z)^2 r_{halo}^2)
+\end{equation}
+
+$R, r$ (Cylindrical, spherical)
+
+\begin{equation}
+C_1 = \left( \dfrac{cos^2 \phi}{q_1^2} + \dfrac{sin^2 \phi}{q_2^2}   \right)
+\end{equation}
+
+\begin{equation}
+C_2 = \left( \dfrac{cos^2 \phi}{q_2^2} + \dfrac{sin^2 \phi}{q_1^2} \right)
+\end{equation}
+
+\begin{equation}
+C_3 = 2 sin \phi cos\phi \left( \dfrac{1}{q_1^2} - \dfrac{1}{q_2^2} \right)
+\end{equation}
+
 \section{TO-DO:}
 
 \begin{itemize}
