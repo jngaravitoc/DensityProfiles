@@ -28,6 +28,7 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{float}
+\usepackage{hyperref}
 \usepackage{mathpazo} % Use the Palatino font
 \usepackage[T1]{fontenc} % Required for accented characters
 \usepackage{cancel}
@@ -473,34 +474,50 @@ Finally the ratio of the enclosed mass of the Hernquist and the NFW profiles is:
 \includegraphics[scale=0.7]{MN_density_contours.png}
 \end{figure}
 
-\section{Logarithmic Profile}
+\section{Logarithmic Profile}\label{sec:log}
+
+Disc profile
 
 \begin{equation}
-\Phi_L = \dfrac{1}{2} v_0^2 ln \left( R_c^2 + r^2 + \dfrac{z^2}{q_{\phi}^2}  \right) + constant
+\Phi_L(R, z) = \dfrac{1}{2} v_0^2 ln \left( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2}  \right) + constant
 \end{equation}
 
-The circular velocity at $z=0$ is:
+The circular velocity at $z=0$ is $v_c^22(R, z=0) = r \dfrac{d \Phi}{dR}$:
 
 \begin{equation}
-v_c = r \dfrac{d \Phi_L}{dr} = \dfrac{v_0 r}{\sqrt{r_c^2 + r^2}}
+v_c(R, z=0) = r \dfrac{d \Phi_L}{dr} = \dfrac{v_0 R}{\sqrt{r_c^2 + R^2}}
 \end{equation}
 
-\begin{equation}
-\rho_L(r, z) =  \dfrac{v_0^2}{4 \pi G q_{\phi}^2} \dfrac{(2q_{\phi}^2 + 1)R_c^2 + r^2 + (2 - q_{\Phi^2})z^2}{(R_c^2 + r^2 + z^2q_{\Phi}^{-2})^2}
-\end{equation}
-
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{Log_vc.png}
 \end{figure}
 
-\begin{figure}
+
+To derive the density we make use of Poisson's equation in cylindrical coordinates:
+
+\begin{equation}
+\rho_L(R, z) = \dfrac{\nabla^2 \Phi_L}{4 \pi G } = \dfrac{1}{4 \pi G} \left( \dfrac{1}{r}\dfrac{d}{dR}R\dfrac{d}{dR}  + \dfrac{d^2}{dz^2}  \right) \Phi_L
+\end{equation}
+
+\begin{equation}
+\rho_L(R, z) = \dfrac{v_0^2}{8 \pi G } \left( \dfrac{1}{R} \dfrac{4R ( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} ) - 4R^3}{( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} )^2} + \dfrac{\dfrac{2}{q_{\phi}^2} ( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} ) - \dfrac{4z^2}{q_{\phi}^4}}{( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} )^2}  \right)
+\end{equation}
+
+\begin{equation}
+\rho_L(R, z) =  \dfrac{v_0^2}{4 \pi G q_{\phi}^2} \dfrac{(2q_{\phi}^2 + 1)R_c^2 + r^2 + (2 - q_{\Phi^2})z^2}{(R_c^2 + r^2 + z^2q_{\Phi}^{-2})^2}
+\end{equation}
+
+
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{MN_logarithmic_contours.png}
 \end{figure}
 
 
-\section{Logarithmic profile (Law, Johnston \& Majewski)}
+\section{Logarithmic profile (Law, Johnston \& Majewski)}\label{sec:LJM05}
+
+This profile is almost the same that the one explained in the previous section \ref{sec:log}
 
 \begin{equation}
 \Phi = v^2_{halo} ln[r^2 + (z^2/q^2) + d^2]
@@ -515,7 +532,7 @@ with $q=0.8-1.45$, $v_{halo}$ should match $v_{circ, \odot}$, $d=1-20kpc$
 
 
 
-\section{Logarithmic (Law \$ Majewski)}
+\section{Logarithmic (Law \& Majewski 2010)}\label{sec:LM10}
 \verb+http://iopscience.iop.org/0004-637X/714/1/229/pdf/apj_714_1_229.pdf+
 
 \begin{equation}
@@ -535,6 +552,27 @@ C_2 = \left( \dfrac{cos^2 \phi}{q_2^2} + \dfrac{sin^2 \phi}{q_1^2} \right)
 \begin{equation}
 C_3 = 2 sin \phi cos\phi \left( \dfrac{1}{q_1^2} - \dfrac{1}{q_2^2} \right)
 \end{equation}
+
+\section{Modelling the MW}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{c c c c }
+\hline 
+Model  & Facundo  & Besla & LM2010  \\
+\hline
+Disk  &     &   & Miyamoto-Nagai  \\
+Disk Param & & & $1.0 \times 10^{11}M_{\odot}$, $\alpha=1$ \\
+ & & & $a=6.5 Kpc, b=0.26Kpc$\\
+Bulge & & & Hernquist\\
+Bulge Param & & & $3.4 \times 10^{10}M_{\odot}$, $c=0.7kpc$ \\
+DM halo & & & \ref{sec:LM10}  \\
+Halo Param & & & $r_halo = 12 Kpc$\\
+reference & & & \href{http://bit.ly/1fXtla9}{LM2010} \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \section{TO-DO:}
 
