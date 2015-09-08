@@ -559,7 +559,7 @@ To derive the density we make use of Poisson's equation in cylindrical coordinat
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{MN_logarithmic_contours.png}
+\includegraphics[scale=0.6]{MN_logarithmic_contours.png}
 \end{figure}
 
 
@@ -604,23 +604,36 @@ C_3 = 2 sin \phi cos\phi \left( \dfrac{1}{q_1^2} - \dfrac{1}{q_2^2} \right)
 \section{Modelling the MW}
 
 \begin{table}[H]
-\begin{center}
-\begin{tabular}{c c c c }
+%\begin{center}
+\begin{scriptsize}
+\begin{tabular}{c c c c c }
 \hline 
-Model  & Facundo  & Besla & LM2010  \\
+Component  &  Besla07 &  LM2010 & Roeland12 & Gomez15 \\
 \hline
-Disk  &     &   & Miyamoto-Nagai  \\
-Disk Param & & & $1.0 \times 10^{11}M_{\odot}$, $\alpha=1$ \\
- & & & $a=6.5 Kpc, b=0.26Kpc$\\
-Bulge & & & Hernquist\\
-Bulge Param & & & $3.4 \times 10^{10}M_{\odot}$, $c=0.7kpc$ \\
-DM halo & & & \ref{sec:LM10}  \\
-Halo Param & & & $r_halo = 12 Kpc$\\
-reference & & & \href{http://bit.ly/1fXtla9}{LM2010} \\
+Disk Model & Miyamoto-Nagai   & Miyamoto-Nagai &  &  \\
+Disk Mass($M_{\odot}$) & $5.5^{10}$  & $1.0 \times 10^{11}$ & & \\
+Disk Param & $R_d = 3.5$, $z=r_{disk}/5.0$  & $\alpha=1$ & &, $a=6.5kpc$, $b=0.26Kpc$\\
+Bulge Model & Hernquist & Hernquist &  & Hernquist\\
+Bulge Mass($M_{\odot}$) & $10^{10}$  &$3.4 \times 10^{10}$ & & \\
+Bulge Param & $0.6 kpc$ &  $3.4 \times 10^{10}M_{\odot}$, $c=0.7kpc$   &0.6Kpc &\\
+DM halo Model & NFW  & \ref{sec:LM10}  & Hernquist(NFW) & \\
+DM halo mass($M_{\odot}$) & $10^{12}$ &$ \times 10^{10}$ & & \\
+Halo Param & $c=11, r_{vir} = 258Kpc$& $r_{halo} = 12 Kpc$ & &\\
+Solar distance $R_{\odot}$ (kpc) & 8.0 &   & & \\
+reference &\href{http://adsabs.harvard.edu/abs/2007ApJ...668..949B}{Besla07} & \href{http://bit.ly/1fXtla9}{LM2010} & &  \\
 \hline
 \end{tabular}
-\end{center}
+\end{scriptsize}
+%\end{center}
 \end{table}
+
+
+
+
+\begin{figure}[H]\label{MWBesla07}
+\centering
+\includegraphics[scale=0.7]{MWBEsla07.png}
+\end{figure}
 
 \section{TO-DO:}
 
