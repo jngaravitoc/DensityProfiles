@@ -580,14 +580,24 @@ with $q=0.8-1.45$, $v_{halo}$ should match $v_{circ, \odot}$, $d=1-20kpc$
 
 
 
-\section{Logarithmic (Law \& Majewski 2010)}\label{sec:LM10}
-\verb+http://iopscience.iop.org/0004-637X/714/1/229/pdf/apj_714_1_229.pdf+
+\section{Logarithmic Triaxial Density Profile}\label{sec:LM10}
+
+Motivated by the fact that the models of the Milky Way Dark Matter halo
+at that time can not reproduce the Sgr stream. Mainly because in axisietric
+potentials it is not possible to fit the angular precession and the the 
+distance of the stream. \cite{Law09} propose a triaxial halo Eq.\ref{eq:LMpotential} 
+which is also in agreement with the CDM paradigm that predicts triaxial halos 
+rather than  spherical \cite{Lee03}. \cite{Law09} report results of the orbital 
+integration in which they find that the best fit in their triaxial halo is for $q_z = 1.25$,
+ $q_1 = 1.5$ and $\phi=90$. \cite{Law10} made N-body simulations in which they 
+include the triaxial halo potential.
 
 \begin{equation}\label{eq:LMpotential}
-\Phi = v^2_{halo} ln(C_1 x^2 + C_2y^2 + C_3 xy + (z/q_z)^2 r_{halo}^2)
+\Phi = v^2_{halo} ln(C_1 x^2 + C_2y^2 + C_3 xy + (z/q_z)^2+ r_{halo}^2)
 \end{equation}
 
-$R, r$ (Cylindrical, spherical)
+Where the constants $C_1, C_2, C_3$ are defined as:
+%$R, r$ (Cylindrical, spherical)
 
 \begin{equation}
 C_1 = \left( \dfrac{cos^2 \phi}{q_1^2} + \dfrac{sin^2 \phi}{q_2^2}   \right)
@@ -601,6 +611,13 @@ C_2 = \left( \dfrac{cos^2 \phi}{q_2^2} + \dfrac{sin^2 \phi}{q_1^2} \right)
 C_3 = 2 sin \phi cos\phi \left( \dfrac{1}{q_1^2} - \dfrac{1}{q_2^2} \right)
 \end{equation}
 
+\begin{figure}\label{fig:Logarithmic Triaxial Potential}
+\includegraphics[scale=0.5]{triaxial_potential.png}
+\caption{Logarithmic Triaxial Potential. In the top panel}
+\end{figure}
+
+
+
 From Eq.\ref{eq:LMpotential} we can derive the circular velocity $v_c$. 
 
 \begin{equation}
@@ -612,16 +629,24 @@ v_c^2 = r \nabla  \Phi
 \end{equation}
 
 \begin{equation}
-\nabla \phi = v_{halo}^2  \left( \dfrac{(2C_1x + C_3 y)\hat{i} + (2C_2y + C_3x)\hat{j} + (2z/q_z)\hat{k}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)}    \right)
+\nabla \phi = v_{halo}^2  \left( \dfrac{(2C_1x + C_3 y)\hat{i} + (2C_2y + C_3x)\hat{j} + (2z/q_z^2)\hat{k}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)}    \right)
 \end{equation}
 
 \begin{equation}
-v_c = v_{halo} \sqrt{ \dfrac{r((2C_1x + C_3 y)^2 + (2C_2y + C_3x)^2 + (2z/q_z)^2)^{1/2}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)} }
+v_c = v_{halo} \sqrt{ \dfrac{r((2C_1x + C_3 y)^2 + (2C_2y + C_3x)^2 + (2z/q_z^2)^2)^{1/2}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)} }
 \end{equation}
+
+\citep{LM10} fixed the value of $v_{halo}$ in order that the MW rotation curve reproduce the obervsed value of $v_{LSR}= 220 km/s$ at $R_{\odot}$
+this implies that $v_{halo} = 135 km/s$. The rotation curve of is presented in Fig.\ref{vcLM10}, the MW rotation curve is also presented in 
+Fig.\ref{MWML10} all the paremeters of this rotation curve are summarized in Table\ref{tab:models}. 
+
+\begin{figure}[H]\label{fig:vcLM10}
+\includegraphics[scale=0.7]{vcLM10.png}
+\end{figure}
 
 \section{Modelling the MW}
 
-\begin{table}[H]
+\begin{table}[H]\label{tab:models}
 %\begin{center}
 \begin{scriptsize}
 \begin{tabular}{c c c c c }
@@ -630,14 +655,14 @@ Component  &  Besla07 &  LM2010 & Roeland12 & Gomez15 \\
 \hline
 Disk Model & Miyamoto-Nagai   & Miyamoto-Nagai &  &  \\
 Disk Mass($M_{\odot}$) & $5.5^{10}$  & $1.0 \times 10^{11}$ & & \\
-Disk Param & $R_d = 3.5$, $z=r_{disk}/5.0$  & $\alpha=1$ & &, $a=6.5kpc$, $b=0.26Kpc$\\
+Disk Param & $R_d = 3.5$, $z=r_{disk}/5.0$  & $\alpha=1$, $a=6.5 kpc$, $b=0.6 kpc$ & &, $a=6.5kpc$, $b=0.26Kpc$\\
 Bulge Model & Hernquist & Hernquist &  & Hernquist\\
 Bulge Mass($M_{\odot}$) & $10^{10}$  &$3.4 \times 10^{10}$ & & \\
-Bulge Param & $0.6 kpc$ &  $3.4 \times 10^{10}M_{\odot}$, $c=0.7kpc$   &0.6Kpc &\\
-DM halo Model & NFW  & \ref{sec:LM10}  & Hernquist(NFW) & \\
+Bulge Param & $0.6 kpc$ &  $c=0.7kpc$  & $0.6Kpc$ &\\
+DM halo Model & NFW  & Triaxial \ref{sec:LM10}  & Hernquist(NFW) & \\
 DM halo mass($M_{\odot}$) & $10^{12}$ &$ \times 10^{10}$ & & \\
 Halo Param & $c=11, r_{vir} = 258Kpc$& $r_{halo} = 12 Kpc$ & &\\
-Solar distance $R_{\odot}$ (kpc) & 8.0 &   & & \\
+Solar distance $R_{\odot}$ (kpc) & 8.0 & 8.0  & & \\
 reference &\href{http://adsabs.harvard.edu/abs/2007ApJ...668..949B}{Besla07} & \href{http://bit.ly/1fXtla9}{LM2010} & &  \\
 \hline
 \end{tabular}
@@ -653,6 +678,14 @@ reference &\href{http://adsabs.harvard.edu/abs/2007ApJ...668..949B}{Besla07} & \
 \includegraphics[scale=0.7]{MWBEsla07.png}
 \end{figure}
 
+
+
+\begin{figure}[H]\label{MWLM10}
+\centering
+\includegraphics[scale=0.7]{MWLM10.png}
+\end{figure}
+
+
 \section{TO-DO:}
 
 \begin{itemize}
@@ -666,7 +699,7 @@ account adiabatic contraction.
 
 \end{itemize}
 
-\bibliographystyle{plain}
+\bibliographystyle{abbrvnat}
 \bibliography{referencesDMMW}
 
 
