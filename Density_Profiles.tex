@@ -583,7 +583,7 @@ with $q=0.8-1.45$, $v_{halo}$ should match $v_{circ, \odot}$, $d=1-20kpc$
 \section{Logarithmic (Law \& Majewski 2010)}\label{sec:LM10}
 \verb+http://iopscience.iop.org/0004-637X/714/1/229/pdf/apj_714_1_229.pdf+
 
-\begin{equation}
+\begin{equation}\label{eq:LMpotential}
 \Phi = v^2_{halo} ln(C_1 x^2 + C_2y^2 + C_3 xy + (z/q_z)^2 r_{halo}^2)
 \end{equation}
 
@@ -599,6 +599,24 @@ C_2 = \left( \dfrac{cos^2 \phi}{q_2^2} + \dfrac{sin^2 \phi}{q_1^2} \right)
 
 \begin{equation}
 C_3 = 2 sin \phi cos\phi \left( \dfrac{1}{q_1^2} - \dfrac{1}{q_2^2} \right)
+\end{equation}
+
+From Eq.\ref{eq:LMpotential} we can derive the circular velocity $v_c$. 
+
+\begin{equation}
+v_c^2 = r \nabla  \Phi 
+\end{equation}
+
+\begin{equation}
+\nabla \Phi = \dfrac{d}{dx} \Phi \hat{i} + \dfrac{d}{dy} \Phi \hat{j} + \dfrac{d}{dz} \Phi \hat{k}
+\end{equation}
+
+\begin{equation}
+\nabla \phi = v_{halo}^2  \left( \dfrac{(2C_1x + C_3 y)\hat{i} + (2C_2y + C_3x)\hat{j} + (2z/q_z)\hat{k}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)}    \right)
+\end{equation}
+
+\begin{equation}
+v_c = v_{halo} \sqrt{ \dfrac{r((2C_1x + C_3 y)^2 + (2C_2y + C_3x)^2 + (2z/q_z)^2)^{1/2}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)} }
 \end{equation}
 
 \section{Modelling the MW}
