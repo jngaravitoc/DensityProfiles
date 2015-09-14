@@ -50,32 +50,33 @@ def a_plummer(a, r, M):
     M = M*units.Msun
     r = r*units.kpc
     A = - G * M * r / (r**2 + a**2)**(3/2.0)
+    A = A.to(units.km / units.s**2)
     return A
 	
 #++++++++++++++++ HERNQUIST ++++++++++++++++++++++++++++
 
-def pot_Hernquist(a, r, M):
-    a = a*units.kpc
+def pot_hernquist(a, r, M):
+    a = a * units.kpc
     r = r * units.kpc
     M = M * units.Msun
     phi = -G*M / (r+a)
     return phi
 
-def dens_Hernquist(a, r, M):
-    a = a*units.kpc
+def dens_hernquist(a, r, M):
+    a = a * units.kpc
     r = r * units.kpc
     M = M * units.Msun
     rho = M / (2 * np.pi) * a / (r*(r+a)**3)
     return rho
 
-def mass_Hernquist(a, r, M):
-    a = a*units.kpc
+def mass_hernquist(a, r, M):
+    a = a*  units.kpc
     r = r * units.kpc
     M = M * units.Msun
     Mass = M * r**2 / (r+a)**2
     return Mass
 
-def vc_Hernquist(a, r, M):
+def vc_hernquist(a, r, M):
     a = a*units.kpc
     r = r * units.kpc
     M = M * units.Msun
@@ -83,25 +84,28 @@ def vc_Hernquist(a, r, M):
     vc = vc.to(units.km / units.s)
     return vc
 
-def a_Hernquist(a, r, M):
-    a = a * untis.kpc
+def a_hernquist(a, r, M):
+    a = a * units.kpc
     r = r * units.kpc
     M = M * units.Msun
-    A =  - G * M  / (r + a)**2 
+    A =  - G * M  / (r + a)**2
+    A = A.to(units.km / units.s**2) 
     return A
 
 #+++++++++++++++++++ SIS (Singular Isothermal Sphere) ++++++++++++++++++++
 
 def dens_sis(a, r, v):
     a = a * units.kpc
-    r = r * untis.kpc
+    r = r * units.kpc
+    v = v * units.km / units.s
     v = v.to(units.kpc / units.s)
-    rho = v**2 / (4*np.pi * G*(r**2 + a**2))
+    rho = v**2 / (4 * np.pi * G * (r**2 + a**2))
     return rho
 
 def mass_sis(a, r, v):
     a = a * units.kpc
     r = r * units.kpc
+    v = v * units.km / units.s
     v = v.to(units.kpc / units.s)
     M = v**2 * r/G
     return M
@@ -109,28 +113,33 @@ def mass_sis(a, r, v):
 def pot_sis(a, r, v):
     a = a * units.kpc
     r = r * units.kpc
+    v = v * units.km / units.s
     v = v.to(units.kpc / units.s)
-    phi = v**2 * log(r.value + a.value)
-    return phi*units.kpc
-
+    phi = v**2 * np.log(r.value + a.value)
+    return phi
 
 def vc_sis(a, r, v):
     a = a * units.kpc
     r = r * units.kpc
+    v = v * units.km / units.s
     v = v.to(units.kpc / units.s)
-    V = v * np.sqrt(r + a) / sqrt(r)
+    V = v * np.sqrt(r + a) / np.sqrt(r)
+    V = V.to(units.km / units.s )
     return V
 
 def a_sis(a, r, v):
     a = a * units.kpc
     r = r * units.kpc
+    v = v * units.km / units.s
     v = v.to(units.kpc / units.s)
     A = -v**2 / (r + a)
+    A = A.to(units.km / units.s**2)
+    return A
 
 
 #+++++++++++++++++++++++ Miyamoto-Nagai +++++++++++++++++++++++++++
 
-def pot_MN(a, b, z, r, M):
+def pot_mn(a, b, z, r, M):
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
@@ -138,7 +147,7 @@ def pot_MN(a, b, z, r, M):
     phi = - G*M / (np.sqrt(r**2 + ( a + np.sqrt( z**2 + b**2 ))**2 ) )
     return phi
 
-def dens_MN(a, b, z, r, M):
+def dens_mn(a, b, z, r, M):
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
@@ -147,7 +156,7 @@ def dens_MN(a, b, z, r, M):
     return rho.value
 
 
-def vc_MN(a, b, z, R, M):
+def vc_mn(a, b, z, R, M):
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
@@ -157,17 +166,17 @@ def vc_MN(a, b, z, R, M):
     vc = vc.to(units.km / units.s)	
     return vc
 
-def mass_MN(a, b, z, R, M):
+def mass_mn(a, b, z, R, M):
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
     R = r*units.kpc
     M = M * units.Msun
-    v = vc_MN(a, b, z, R, M)
+    v = vc_mn(a, b, z, R, M)
     mass = v**2 * R / G
     return mass
     
-def a_MN(a, b, z, R, M):
+def a_mn(a, b, z, R, M):
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
@@ -175,6 +184,8 @@ def a_MN(a, b, z, R, M):
     M = M * units.Msun
     Ar = - G *  M * R / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
     Az = - G * M * z * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
+    Ar = Ar.to(units.km / units.s**2)
+    Az = Az.to(units.km / units.s**2)
     return Ar, Az
 
 
