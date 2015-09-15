@@ -162,7 +162,8 @@ def vc_mn(a, b, z, R, M):
     b = b * units.kpc
     R = R * units.kpc
     M = M * units.Msun
-    vc = np.sqrt( G * M  * R**2/  (R**2 + ( a + np.sqrt(z**2 + b**2))**2 )**(3.0/2.0) )
+    factor = R**2 + (a + np.sqrt(z**2 + b**2))**2
+    vc = np.sqrt( G * M  * R**2 / factor**(3.0/2.0)) 
     vc = vc.to(units.km / units.s)	
     return vc
 
@@ -173,7 +174,7 @@ def mass_mn(a, b, z, R, M):
     b = b * units.kpc
     R = R * units.kpc
     M = M * units.Msun
-    v = vc_mn(a, b, z, R, M)
+    v = vc_mn(a.value, b.value, z.value, R.value, M.value)
     mass = v**2 * R / G
     return mass
     
