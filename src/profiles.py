@@ -147,30 +147,31 @@ def pot_mn(a, b, z, r, M):
     phi = - G*M / (np.sqrt(r**2 + ( a + np.sqrt( z**2 + b**2 ))**2 ) )
     return phi
 
-def dens_mn(a, b, z, r, M):
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
-    R = r*units.kpc
+def dens_mn(a, b, z, R, M):
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
+    R = R * units.kpc
     rho = (b**2 * M / (4*np.pi)) * (a*R**2 + ( a + 3*(np.sqrt(z**2 + b**2)))*( a + np.sqrt(z**2 + b**2))**2 ) /( ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(5./2.) * (z**2 + b**2)**(3./2.)) )
     return rho.value
 
 
 def vc_mn(a, b, z, R, M):
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
-    R = r*units.kpc
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
+    R = R * units.kpc
     M = M * units.Msun
-    vc = r*np.sqrt(G*M / ( (R**2 + (a + b)**2)**(3/2.0) ))
+    vc = np.sqrt( G * M  * R**2/  (R**2 + ( a + np.sqrt(z**2 + b**2))**2 )**(3.0/2.0) )
     vc = vc.to(units.km / units.s)	
     return vc
 
+
 def mass_mn(a, b, z, R, M):
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
-    R = r*units.kpc
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
+    R = R * units.kpc
     M = M * units.Msun
     v = vc_mn(a, b, z, R, M)
     mass = v**2 * R / G
@@ -180,7 +181,7 @@ def a_mn(a, b, z, R, M):
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
-    R = r*units.kpc
+    R = R*units.kpc
     M = M * units.Msun
     Ar = - G *  M * R / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
     Az = - G * M * z * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
