@@ -34,9 +34,10 @@ C_2 = \left( \dfrac{cos^2 \phi}{q_2^2} + \dfrac{sin^2 \phi}{q_1^2} \right)
 C_3 = 2 sin \phi cos\phi \left( \dfrac{1}{q_1^2} - \dfrac{1}{q_2^2} \right)
 \end{equation}
 
-\begin{figure}\label{fig:Logarithmic}
+\begin{figure}
 \includegraphics[scale=0.5]{../figures/triaxial_potential.png}
 \caption{Logarithmic Triaxial Potential. In the top panel}
+\label{fig:Logarithmic}
 \end{figure}
 
 
@@ -59,11 +60,22 @@ v_c^2 = r \nabla  \Phi
 v_c = v_{halo} \sqrt{ \dfrac{r((2C_1x + C_3 y)^2 + (2C_2y + C_3x)^2 + (2z/q_z^2)^2)^{1/2}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)} }
 \end{equation}
 
-\citep{LM10} fixed the value of $v_{halo}$ in order that the MW rotation curve reproduce the obervsed value of $v_{LSR}= 220 km/s$ at $R_{\odot}$
+
+\begin{equation}
+a = - v_{halo}^2  \left( \dfrac{(2C_1x + C_3 y)\hat{i} + (2C_2y + C_3x)\hat{j} + (2z/q_z^2)\hat{k}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)} \right)
+\end{equation}
+
+\begin{equation}
+M(<R) = \dfrac{v_{halo}^2 r^2}{G} \dfrac{((2C_1x + C_3 y)^2 + (2C_2y + C_3x)^2 + (2z/q_z^2)^2)^{1/2}}{(C_1 x^2 + C_2 y^2 + C_3 x y + (z/q_z)^2 + r_{halo}^2)}   
+\end{equation}
+
+\citep{Law10} fixed the value of $v_{halo}$ in order that the MW rotation curve reproduce the obervsed value of $v_{LSR}= 220 km/s$ at $R_{\odot}$
 this implies that $v_{halo} = 135 km/s$. The rotation curve of is presented in Fig.\ref{vcLM10}, the MW rotation curve is also presented in
 Fig.\ref{MWML10} all the paremeters of this rotation curve are summarized in Table\ref{tab:models}.
 
-\begin{figure}[H]\label{fig:vcLM10}
+\begin{figure}[H]
+\centering
 \includegraphics[scale=0.7]{../figures/vcLM10.png}
+\label{fig:vcLM10}
 \end{figure}
 
