@@ -197,7 +197,7 @@ def pot_log( Rc, q, z, R, v):
         v = v * units.km / units.s
         v = v.to(units.kpc / units.s)
         R = R * units.kpc
-        phi = 0.5 * v**2 * log(Rc**2 + R**2 + z**2/q**2)
+        phi = 0.5 * v**2 * np.log(Rc.value**2 + R.value**2 + z.value**2/q**2)
 	return phi
 
 def dens_log(Rc, q, z, R, v):
@@ -206,16 +206,16 @@ def dens_log(Rc, q, z, R, v):
         v = v * units.km / units.s
         v = v.to(units.kpc / units.s)
         R = R * units.kpc	
-	rho = ( v0**2 / (4*np.pi*G*q**2) ) * ( ( (2*q**2 + 1)*Rc**2 + R**2 + (2 - q**-2)*z**2 ) / (Rc**2 + R**2 + ( z**2 / q**2) )**2  )
+	rho = ( v**2 / (4*np.pi*G*q**2) ) * ( ( (2*q**2 + 1)*Rc**2 + R**2 + (2 - q**-2)*z**2 ) / (Rc**2 + R**2 + ( z**2 / q**2) )**2  )
 	return rho
 
-def v_log(Rc, q, z, R, v):
+def vc_log(Rc, q, z, R, v):
         z = z * units.kpc
         Rc = Rc * units.kpc
         v = v * units.km / units.s
         v = v.to(units.kpc / units.s)
         R = R * units.kpc
-	vc = v * R / (Rc**2 + R**2 + z**2/q**2)
+	vc = v * R / np.sqrt(Rc**2 + R**2 + z**2/q**2)
 	vc = vc.to(units.km/units.s)
  	return vc
 
@@ -237,8 +237,8 @@ def a_log(Rc, q, z, R, v):
         factor = Rc**2 + R**2 + z**2 / q**2
 	aR = - v**2 * R / factor 
 	az = - (v**2 * z/q**2) / factor
-        aR = aR.to(units*km / units.s**2)
-        az = az.to(units*km / units.s**2)
+        aR = aR.to(units.km / units.s**2)
+        az = az.to(units.km / units.s**2)
         return aR, az
 
 #++++++++++++++++++++ Triaxial LMJ++++++++++++++++++++
@@ -247,7 +247,7 @@ def constants(q1, q2, qz, phi):
        C1 = (np.cos(phi)**2 / q1**2)  + (np.sin(phi)**2 / q2**2)
        C2 = (np.cos(phi)**2 / q2**2)  + (np.sin(phi)**2 / q1**2)
        C3 = 2*np.sin(phi)*cos(phi)*(1/q1**2 - 1/q2**2)
-	return C1, C2, C3
+       return C1, C2, C3
 
 def pot_LMJ(r_h, q1, q2, qz, phi, x, y, z, v):
        r_h = r_h * units.kpc
@@ -255,7 +255,7 @@ def pot_LMJ(r_h, q1, q2, qz, phi, x, y, z, v):
        x = x * units.kpc
        y = y * units.kpc
        v = v * units.km / units.s
-       v = v.to(units*kpc / units.s)
+       v = v.to(units.kpc / units.s)
        C1, C2, C3 = constants(q1, q2, qz, phi)
        phi = v**2 * log(C1*x**2 + C2*y**2 + C3*x*y + (z/qz)**2 + r_h**2 )
        return phi
@@ -266,7 +266,7 @@ def vc_LMJ(r_h, q1, q2, qz, phi, x, y, z, v):
        x = x * units.kpc
        y = y * units.kpc
        v = v * units.km / units.s
-       v = v.to(units*kpc / units.s)
+       v = v.to(units.kpc / units.s)
        C1, C2, C3 = constants(q1, q2, qz, phi)
        factor = (C1*x**2 + C2*y**2 + C3*x*y + (z**2/qz**2 + r_h**2))
        r = np.sqrt(x**2 + y**2 + z**2)
