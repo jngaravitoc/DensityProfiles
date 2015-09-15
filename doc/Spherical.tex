@@ -14,15 +14,10 @@ a constant density near the center and falls at large radius.
 
 Where $a$ is call the scale length. The scale length set the length $a$ in which the mayority of the density is enclosed. Note
 that if $a$ is cero the plummer potential would be exactly as the potential of a point mass.
-In the other hand if $a$ goes to infty the potential is rewpresenting a very extended mass source.
+In the other hand if $a$ goes to infinity the potential is represents a very extended mass source.
 In other words the scale length set up the size of the volume in which the mass $M$ is enclosed.
 
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{../figures/plummer_phi.png}
-\end{figure}
-
+Making use of the Poisson's equation one can derive the density from the potential and vice versa.
 
 \begin{equation}
 \nabla ^2 \Phi_P(r) = 4 \pi G \rho_P(r) = \frac{1}{r^2}\frac{d}{dr} \left (  r^2 \frac{d\Phi_P(r)}{dr} \right)
@@ -33,48 +28,54 @@ In other words the scale length set up the size of the volume in which the mass 
 \end{equation}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{../figures/plummer_density.png}
-\end{figure}
-
-
-
-The enclosed mass can be derived from the density by integrating over the volume.
+The enclosed mass can be derived from the density by integrating over a volume or radius r.
 
 \begin{equation}
 M_P(<r) = 4 \pi \int_0^r r'^2\frac{3M}{4\pi a^3} (1 + \frac{r'^2}{a^2})^{-5/2} dr' = \frac{3M}{a^3} \left( \frac{a^4 r^3 \sqrt{r^2/a^2 + 1}}{3(r^2 + a^2)^2}  \right)
 \end{equation}
 
+Making some algebra the total mass enclosed in radius $r$ is 
+given by:
+
 \begin{equation}
 M_P(<r) = M \frac{r^3}{(a^2+r^2)^{3/2}}
 \end{equation}
 
+The cirular velocity can be derived from the total enclosed mass
+as follows:
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.5]{../figures/plummer_mass.png}
-\end{figure}
-
-
-\begin{equation}
-F_g = \frac{GmM}{r^2} = ma_c = m \frac{v_c^2}{r}
-\end{equation}
+%begin{equation}
+%_g = \frac{GmM}{r^2} = ma_c = m \frac{v_c^2}{r}
+%end{equation}
 
 \begin{equation}
 v_c = \sqrt{\frac{GM(<r)}{r}}
 \end{equation}
 
 \begin{equation}
-v_c = \sqrt{GM(\frac{r^2}{(r^2+a^2)^{3/2}})}
+v_c = \sqrt{GM\left(\frac{r^2}{( r^2+a^2 ) ^{3/2}}\right)}
 \end{equation}
 
 
+Finally the acceleration can be derived using:
+
+\begin{equation}
+a = - \nabla \Phi 
+\end{equation}
+
+\begin{equation}
+a = - \dfrac{GMr}{(r^2 + a^2)^{3/2}} 
+\end{equation}
+
+All this quantities are plotted in Fig.\ref{fig:plummer}.
+
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{../figures/plummer_velocity.png}
+\includegraphics[scale=0.35]{../figures/plummer.png}
+\label{fig:plummer}
 \end{figure}
 
+\ref{fig:plummer}
 
 \subsection{Hernquist profile}
 
@@ -100,25 +101,16 @@ M_{Hernquist}(<r) = M \frac{r^2}{(r+a)^2}
 v_c(r) = GM \frac{r}{(r+a)^2}
 \end{equation}
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{../figures/hern_density.png}
-\end{figure}
+\begin{equation}
+a = - \dfrac{-GM}{(r+a)^2}
+\end{equation}
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{../figures/hern_potential.png}
+\includegraphics[scale=0.35]{../figures/hernquist.png}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{../figures/hern_mass.png}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{../figures/hern_velocity.png}
-\end{figure}
 
 
 \subsection{Singular Isothermal Sphere}
@@ -129,21 +121,25 @@ density profiles could be derived.
 
 
 \begin{equation}
-\rho_{iso}(r) = \dfrac{\sigma ^2}{2\pi G r^2}
+\rho_{iso}(r) = \dfrac{\sigma ^2}{2\pi G (r^2+a^2)}
 \end{equation}
 
 Following the same procedure as with the previuos profiles we find $M, \Phi$  and $v_c$.
 
 \begin{equation}
-M_{iso}(<r) = \dfrac{2 \sigma r}{G}
+M_{iso}(<r) = \dfrac{2 \sigma (r+a)}{G}
 \end{equation}
 
 \begin{equation}
-\Phi_{iso}(r) = 2 \sigma^2 ln(r)  + const.
+\Phi_{iso}(r) = 2 \sigma^2 ln(r+a)  + const.
 \end{equation}
 
 \begin{equation}\label{eq:SISv}
 v_c(r) = \sqrt{2}\sigma
+\end{equation}
+
+\begin{equation}
+a = - \dfrac{v^2}{(r+a)}
 \end{equation}
 
 This profile is quite different to the previous ones due to the fact that here the input is
@@ -151,18 +147,9 @@ the velocity instead of the total Mass.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.7]{../figures/sis_density.png}
+\includegraphics[scale=0.35]{../figures/sis.png}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{../figures/sis_mass.png}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{../figures/sis_phi.png}
-\end{figure}
 
 
 
@@ -341,41 +328,4 @@ Finally the ratio of the enclosed mass of the Hernquist and the NFW profiles is:
 \dfrac{M_H}{M_{vir}} = \dfrac{2 \pi \rho_s a^2 r_s}{4 \pi \rho_s r_s^3 f(c_{vir})} = \dfrac{1}{2 f(c_{vir})}  \left( \dfrac{a}{r_s}\right)^2
 \end{equation}
 
-Disc profile
-
-\begin{equation}
-\Phi_L(R, z) = \dfrac{1}{2} v_0^2 ln \left( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2}  \right) + constant
-\end{equation}
-
-The circular velocity at $z=0$ is $v_c^22(R, z=0) = r \dfrac{d \Phi}{dR}$:
-
-\begin{equation}
-v_c(R, z=0) = r \dfrac{d \Phi_L}{dr} = \dfrac{v_0 R}{\sqrt{r_c^2 + R^2}}
-\end{equation}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.7]{../figures/Log_vc.png}
-\end{figure}
-
-
-To derive the density we make use of Poisson's equation in cylindrical coordinates:
-
-\begin{equation}
-\rho_L(R, z) = \dfrac{\nabla^2 \Phi_L}{4 \pi G } = \dfrac{1}{4 \pi G} \left( \dfrac{1}{r}\dfrac{d}{dR}R\dfrac{d}{dR}  + \dfrac{d^2}{dz^2}  \right) \Phi_L
-\end{equation}
-
-\begin{equation}
-\rho_L(R, z) = \dfrac{v_0^2}{8 \pi G } \left( \dfrac{1}{R} \dfrac{4R ( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} ) - 4R^3}{( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} )^2} + \dfrac{\dfrac{2}{q_{\phi}^2} ( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} ) - \dfrac{4z^2}{q_{\phi}^4}}{( R_c^2 + R^2 + \dfrac{z^2}{q_{\phi}^2} )^2}  \right)
-\end{equation}
-
-\begin{equation}
-\rho_L(R, z) =  \dfrac{v_0^2}{4 \pi G q_{\phi}^2} \dfrac{(2q_{\phi}^2 + 1)R_c^2 + r^2 + (2 - q_{\Phi^2})z^2}{(R_c^2 + r^2 + z^2q_{\Phi}^{-2})^2}
-\end{equation}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{../figures/MN_logarithmic_contours.png}
-\end{figure}
 
