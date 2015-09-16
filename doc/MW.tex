@@ -60,6 +60,8 @@ r_T ^ 2 = C_1 x^2 + C_2 y^2 + C_3 xy + \dfrac{z^2}{q_3^2}
 
 Where $C_1, C_2, C_3$ are the same as in the triaxial model. 
 
+\subsubsection{Acceleration}
+
 Then the acceleration would be:
 
 \begin{equation}
@@ -97,7 +99,7 @@ To evaluate this derivatives the following expressions are useful:
 \end{equation}
 
 \begin{equation}
-\dfrac{\partial \tilde{r}}{\partial \alpha} = \dfrac{\left( \dfrac{dr_T}{d\alpha} r_A + r_T \dfrac{dr_A}{d\alpha}\right) (r_a + r_A) - (r_a + r_T)r_A \dfrac{dr_A}{d\alpha} }{(r_a^2 + r_A^2)}
+\dfrac{\partial \tilde{r}}{\partial \alpha} = \dfrac{\left( \dfrac{dr_T}{d\alpha} r_A + r_T \dfrac{dr_A}{d\alpha}\right) (r_a + r_A) - (r_a + r_T)r_A \dfrac{dr_A}{d\alpha} }{(r_a + r_A)^2}
 \end{equation}
 
 Where $\alpha$ stands for the $x, y, z$
@@ -115,5 +117,13 @@ a_y = - \dfrac{v_{halo}^2 2 \tilde{r}}{(\tilde{r}^2 + d^2)} \dfrac{\partial \til
 \begin{equation}
 a_z = - \dfrac{v_{halo}^2 2 \tilde{r}}{(\tilde{r}^2 + d^2)} \dfrac{\partial \tilde{r}}{\partial z}
 \end{equation}
+
+\subsubsection{Circular velocity}
+
+\begin{equation}
+{v_c}^2 = r|-\nabla \phi|  = - \dfrac{2 \tilde{r}^2 v_{halo}^2}{\tilde{r}^2  + d^2} \left( \left( \dfrac{d\tilde{r} }{dx}\right)^2 + \left( \dfrac{d\tilde{r} }{dy}\right)^2 + \left( \dfrac{d\tilde{r} }{dz}\right)^2  \right)^{1/2} 
+\end{equation}
+
+
 
 
