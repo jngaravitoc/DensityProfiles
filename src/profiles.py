@@ -93,13 +93,18 @@ def vc_hernquist(a, r, M):
     vc = vc.to(units.km / units.s)
     return vc
 
-def a_hernquist(a, r, M):
+def a_hernquist(a, x, y, z):
     a = a * units.kpc
-    r = r * units.kpc
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
     M = M * units.Msun
-    A =  - 1.0  / (r + a)**2
+    Ax =  - 1.0 * x  / ( r * (r + a)**2)
+    Ay =  - 1.0 * y  / ( r * (r + a)**2)
+    Az =  - 1.0 * z  / ( r * (r + a)**2)
     #A = A.to(units.km / units.s**2) 
-    return A
+    return Ax, Ay, Az
 
 #+++++++++++++++++++ SIS (Singular Isothermal Sphere) ++++++++++++++++++++
 
@@ -136,14 +141,18 @@ def vc_sis(a, r, v):
     V = V.to(units.km / units.s )
     return V
 
-def a_sis(a, r, v):
+def a_sis(a, x, y, z, v):
     a = a * units.kpc
-    r = r * units.kpc
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
     v = v * units.km / units.s
     v = v.to(units.kpc / units.s)
-    A = -v**2 / (r + a)
-    A = A.to(units.km / units.s**2)
-    return A
+    Ax = -v**2 * x / (r * (r + a))
+    Ay = -v**2 * y / (r * (r + a))
+    Az = -v**2 * z / (r * (r + a))
+    return Ax, Ay, Az
 
 
 #+++++++++++++++++++++++ Miyamoto-Nagai +++++++++++++++++++++++++++
@@ -187,17 +196,20 @@ def mass_mn(a, b, z, R, M):
     mass = v**2 * R / G
     return mass
     
-def a_mn(a, b, z, R, M):
+def a_mn(a, b, x, y, z):
+    x = x*units.kpc
+    y = y*units.kpc
     z = z*units.kpc
     a = a*units.kpc
     b = b*units.kpc
-    R = R*units.kpc
+    R = np.sqrt(x**2 + y**2)
     M = M * units.Msun
-    Ar = - G *  M * R / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
-    Az = - G * M * z * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
-    Ar = Ar.to(units.km / units.s**2)
-    Az = Az.to(units.km / units.s**2)
-    return Ar, Az
+    Ax = -  x / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
+    Ay = -  y / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
+    Az = -  z * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
+    #Ar = Ar.to(units.km / units.s**2)
+    #Az = Az.to(units.km / units.s**2)
+    return Ax, Ay, Az
 
 #+++++++++++++++++++++++++++++++++++++++++++ Logarithmic Profile +++++++++++++++++++++++
 
