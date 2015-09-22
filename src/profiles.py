@@ -47,13 +47,20 @@ def vc_plummer(a, r, M):
     vc = vc.to(units.km / units.s)
     return vc
 
-def a_plummer(a, r, M):
+def a_plummer(a, x, y, z, M):
     a = a*units.kpc
     M = M*units.Msun
-    r = r*units.kpc
-    A = - G * M * r / (r**2 + a**2)**(3/2.0)
-    A = A.to(units.km / units.s**2)
-    return A
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
+    Ax = - x / (r**2 + a**2)**(3/2.0)
+    Ay = - y / (r**2 + a**2)**(3/2.0)
+    Az = - z / (r**2 + a**2)**(3/2.0)
+    #Ax = Ax.to(units.km / units.s**2)
+    #Ay = Ay.to(units.km / units.s**2)
+    #Az = Az.to(units.km / units.s**2)
+    return Ax.value, Ay.value, Az.value
 	
 #++++++++++++++++ HERNQUIST ++++++++++++++++++++++++++++
 
@@ -90,8 +97,8 @@ def a_hernquist(a, r, M):
     a = a * units.kpc
     r = r * units.kpc
     M = M * units.Msun
-    A =  - G * M  / (r + a)**2
-    A = A.to(units.km / units.s**2) 
+    A =  - 1.0  / (r + a)**2
+    #A = A.to(units.km / units.s**2) 
     return A
 
 #+++++++++++++++++++ SIS (Singular Isothermal Sphere) ++++++++++++++++++++
