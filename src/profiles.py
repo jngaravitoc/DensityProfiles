@@ -100,7 +100,7 @@ def a_hernquist(a, x, y, z):
     y = y * units.kpc
     z = z * units.kpc
     r = np.sqrt(x**2 + y**2 + z**2)
-    M = M * units.Msun
+    #M = M * units.Msun
     Ax =  - 1.0 * x  / ( r * (r + a)**2)
     Ay =  - 1.0 * y  / ( r * (r + a)**2)
     Az =  - 1.0 * z  / ( r * (r + a)**2)
@@ -204,7 +204,7 @@ def a_mn(a, b, x, y, z):
     a = a*units.kpc
     b = b*units.kpc
     R = np.sqrt(x**2 + y**2)
-    M = M * units.Msun
+    #M = M * units.Msun
     Ax = -  x / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
     Ay = -  y / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
     Az = -  z * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
@@ -370,9 +370,9 @@ def a_LMJ(r_h, q1, q2, qz, phi, x, y, z, v):
        ax = -v**2 * (2*C1*x + C3*y) / factor
        ay = -v**2 * (2*C2*y + C3*x) / factor
        az = -v**2 * (2*z / qz**2) / factor
-       ax = ax.to(units.km / units.s**2)
-       ay = ay.to(units.km / units.s**2)
-       az = az.to(units.km / units.s**2)
+       #ax = ax.to(units.km / units.s**2)
+       #ay = ay.to(units.km / units.s**2)
+       #az = az.to(units.km / units.s**2)
        return ax, ay, az
 
 def mass_LMJ(r_h, q1, q2, qz, phi, x, y, z, v):
