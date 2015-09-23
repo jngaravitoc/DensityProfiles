@@ -1,0 +1,15 @@
+#Time that I expend in the project. 
+TIME, DAY, WHAT
+60, 9/15,  Fixing bug in Hernquist and NFW equivalence. 
+60, 9/16,  Acceleration term of Vera-Ciro model.
+30, 9/16,  Implementing velocity
+15, 9/16,  Writing Leapfrog integrator( Done in 1D)
+50, 9/16,  Writing Leapfrog in 3D
+40, 9/16,  Reading Vera13 Paper
+90, 9/17, Wirtting Vera Ciro summary
+60, 9/18, Writting correct Units in leapfrog and reading 
+30, 9/21, Installing Gadget
+90, 9/21, Reading
+180, 9/22, Writting orbtis code.
+
+
