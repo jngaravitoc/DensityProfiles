@@ -12,7 +12,7 @@ def H(z):
     return H_0*(Omega0*(1+z)**3 - (Omega0+Lambda0-1)*(1+z)**2 + Lambda0)**0.5
 
 def Omega_z(z):
-    return Omega0 * (1+z)**3 * (H_0/H(z,Omega0, H_0))**2
+    return Omega0 * (1+z)**3 * (H_0/H(z))**2
 
 def rho_crit(z):
     H2 = H(z)**2
@@ -27,8 +27,10 @@ def Dvir(z):# from the solution of the top hat model!
 
 def rvir(Mvir, z):
     Mvir = Mvir * units.Msun
-    H_0 = H_0.to(units.Mpc / (units.s * units.Mpc))
     Deltavir = Dvir(z)
     pcrit = rho_crit(z)
     Rvir = ( 3*Mvir / (4 * np.pi * Deltavir * pcrit * Omega0) )**(1/3.)
+    Rvir = Rvir.to(units.kpc)
     return Rvir
+
+
