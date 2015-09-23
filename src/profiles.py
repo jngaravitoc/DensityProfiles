@@ -9,6 +9,7 @@
 import numpy as np
 from astropy import constants
 from astropy import units
+from cosmotools import *
 
 G = constants.G
 K = constants.k_B
@@ -210,6 +211,67 @@ def a_mn(a, b, x, y, z):
     #Ar = Ar.to(units.km / units.s**2)
     #Az = Az.to(units.km / units.s**2)
     return Ax, Ay, Az
+
+
+#+++++++++++++++++++++++++ NFW +++++++++++++++++++++++++++
+
+def pot_NFW(c, x, y, z, M):
+    x = x*units.kpc
+    y = y*units.kpc
+    z = z*units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
+    Rvir = rvir(M, 0) # here we are working at z=0
+    a = Rvir / c 
+    M = M * units.Msun
+    phi = -G * M * np.log(1 + r/a) / r
+    return phi
+
+def dens_MFW(c, x, y, z, M):
+    x = x*units.kpc
+    y = y*units.kpc
+    z = z*units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
+    Rvir = rvir(M, 0) # here we are working at z=0
+    a = Rvir / c
+    M = M * units.Msun
+    rho = M / ( (4 * np.pi * a**3 ) * r / a * ( 1 + r/a)**2  )  
+    return rho
+
+def vc_NFW(c, x, y, z, M):
+    x = x*units.kpc
+    y = y*units.kpc
+    z = z*units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
+    Rvir = rvir(M, 0) # here we are working at z=0
+    M = M * units.Msun
+    a = Rvir / c
+    up = G * M * (np.log(1 + r/a) )
+    vc = np.sqrt(up / r)
+    vc = vc.to(units.km / units.s)
+    return vc
+
+def mass_NFW(c, x, y, z, M):
+    x = x*units.kpc
+    y = y*units.kpc
+    z = z*units.kpc
+    Rvir = rvir(M, 0) # here we are working at z=0
+    a = Rvir / c
+    M = M * units.Msun
+    mass = M * (np.log(1 + r/a) - r/(a+r) ) 
+    return mass
+
+def a_NFW(c, x, y, z, M):
+    x = x*units.kpc
+    y = y*units.kpc
+    z = z*units.kpc
+    #M = M * units.Msun
+    Rvir = rvir(M, 0) # here we are working at z=0
+    a = Rvir / c
+    r = np.sqrt(x**2 + y**2 + z**2)
+    ax = 1 / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * x / r
+    ay = 1 / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * y / r
+    az = 1 / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * z / r
+    return ax, ay, az
 
 #+++++++++++++++++++++++++++++++++++++++++++ Logarithmic Profile +++++++++++++++++++++++
 
