@@ -87,9 +87,12 @@ def mass_hernquist(a, r, M):
     Mass = M * r**2 / (r+a)**2
     return Mass
 
-def vc_hernquist(a, r, M):
+def vc_hernquist(a, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
     a = a*units.kpc
-    r = r * units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
     M = M * units.Msun
     vc = np.sqrt(G*M*r/(r+a)**2)
     vc = vc.to(units.km / units.s)
@@ -161,28 +164,34 @@ def a_sis(a, x, y, z, v):
 
 #+++++++++++++++++++++++ Miyamoto-Nagai +++++++++++++++++++++++++++
 
-def pot_mn(a, b, z, r, M):
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
-    r = r*units.kpc
-    phi = - G*M / (np.sqrt(r**2 + ( a + np.sqrt( z**2 + b**2 ))**2 ) )
-    return phi
-
-def dens_mn(a, b, z, R, M):
+def pot_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
     z = z * units.kpc
     a = a * units.kpc
     b = b * units.kpc
-    R = R * units.kpc
+    R = np.sqrt(x**2 + y**2)
+    phi = - G*M / (np.sqrt(R**2 + ( a + np.sqrt( z**2 + b**2 ))**2 ) )
+    return phi
+
+def dens_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
+    R = np.sqrt(x**2 + y**2)
     rho = (b**2 * M / (4*np.pi)) * (a*R**2 + ( a + 3*(np.sqrt(z**2 + b**2)))*( a + np.sqrt(z**2 + b**2))**2 ) /( ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(5./2.) * (z**2 + b**2)**(3./2.)) )
     return rho.value
 
 
-def vc_mn(a, b, z, R, M):
+def vc_mn(a, b, x, y, z,  M):
+    x = x * units.kpc
+    y = y * units.kpc
     z = z * units.kpc
     a = a * units.kpc
     b = b * units.kpc
-    R = R * units.kpc
+    R = np.sqrt(x**2 + y**2)
     M = M * units.Msun
     factor = R**2 + (a + np.sqrt(z**2 + b**2))**2
     vc = np.sqrt( G * M  * R**2 / factor**(3.0/2.0)) 
@@ -190,22 +199,24 @@ def vc_mn(a, b, z, R, M):
     return vc
 
 
-def mass_mn(a, b, z, R, M):
+def mass_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
     z = z * units.kpc
     a = a * units.kpc
     b = b * units.kpc
-    R = R * units.kpc
+    R = np.sqrt(x**2 + y**2)
     M = M * units.Msun
     v = vc_mn(a.value, b.value, z.value, R.value, M.value)
     mass = v**2 * R / G
     return mass
     
 def a_mn(a, b, x, y, z, M):
-    x = x*units.kpc
-    y = y*units.kpc
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
     R = np.sqrt(x**2 + y**2)
     M = M * units.Msun
     Ax = -  x * G * M / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
