@@ -42,9 +42,9 @@ def leapfrog(n_points, h, x_ic, y_ic, z_ic, vx_ic, vy_ic, vz_ic):
 	vy[0] = vy_ic  
 	vz[0] = vz_ic  
 
-	ax[0] = acceleration(x[0], y[0], z[0])[0]
-	ay[0] = acceleration(x[0], y[0], z[0])[1]
-	az[0] = acceleration(x[0], y[0], z[0])[2]
+	#ax[0] = acceleration(x[0], y[0], z[0], vx[0], vy[0], vz[0])[0]
+	#ay[0] = acceleration(x[0], y[0], z[0], vx[0], vy[0], vz[0])[1]
+	#az[0] = acceleration(x[0], y[0], z[0], vx[0], vy[0], vz[0])[2]
 
         # one half step 
 
@@ -53,13 +53,13 @@ def leapfrog(n_points, h, x_ic, y_ic, z_ic, vx_ic, vy_ic, vz_ic):
 	y[1] = y[0] + h * vy[0]
 	z[1] = z[0] + h * vz[0]
 
-	vx[1] = vx[0] + h*acceleration(x[0], y[0], z[0])[0]
-	vy[1] = vy[0] + h*acceleration(x[0], y[0], z[0])[1]
-	vz[1] = vz[0] + h*acceleration(x[0], y[0], z[0])[2]
+	vx[1] = vx[0] + h*acceleration(x[0], y[0], z[0], vx[0], vy[0], vz[0])[0]
+	vy[1] = vy[0] + h*acceleration(x[0], y[0], z[0], vx[0], vy[0], vz[0])[1]
+	vz[1] = vz[0] + h*acceleration(x[0], y[0], z[0], vx[0], vy[0], vz[0])[2]
 
-	ax[1] = acceleration(x[1],y[1], z[1])[0]
-	ay[1] = acceleration(x[1],y[1], z[1])[1]
-	az[1] = acceleration(x[1],y[1], z[1])[2]
+	ax[1] = acceleration(x[1],y[1], z[1], vx[1], vy[1], vz[1])[0]
+	ay[1] = acceleration(x[1],y[1], z[1], vx[1], vy[1], vz[1])[1]
+	az[1] = acceleration(x[1],y[1], z[1], vx[1], vy[1], vz[1])[2]
 
 	# iterate over all the steps!
 
@@ -70,9 +70,9 @@ def leapfrog(n_points, h, x_ic, y_ic, z_ic, vx_ic, vy_ic, vz_ic):
 	    y[i] = y[i-2] + 2 * h * vy[i-1]
 	    z[i] = z[i-2] + 2 * h * vz[i-1]
 
-	    vx[i] = vx[i-2] + 2 * h * acceleration(x[i-1], y[i-1], z[i-1])[0]
-	    vy[i] = vy[i-2] + 2 * h * acceleration(x[i-1], y[i-1], z[i-1])[1]
-	    vz[i] = vz[i-2] + 2 * h * acceleration(x[i-1], y[i-1], z[i-1])[2]
+	    vx[i] = vx[i-2] + 2 * h * acceleration(x[i-1], y[i-1], z[i-1], vx[i-1], vy[i-1], vz[i-1])[0]
+	    vy[i] = vy[i-2] + 2 * h * acceleration(x[i-1], y[i-1], z[i-1], vx[i-1], vy[i-1], vz[i-1])[1]
+	    vz[i] = vz[i-2] + 2 * h * acceleration(x[i-1], y[i-1], z[i-1], vx[i-1], vy[i-1], vz[i-1])[2]
 	
 
         # Writing the output! 
