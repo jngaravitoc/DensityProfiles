@@ -240,7 +240,7 @@ def pot_NFW(c, x, y, z, M):
     phi = -G * M * np.log(1 + r/a) / r
     return phi
 
-def dens_MFW(c, x, y, z, M):
+def dens_NFW(c, x, y, z, M):
     x = x*units.kpc
     y = y*units.kpc
     z = z*units.kpc
