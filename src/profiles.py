@@ -14,6 +14,7 @@ from cosmotools import *
 G = constants.G
 K = constants.k_B
 G = G.to(units.kiloparsec**3 / (units.Msun * units.s**2)) 
+G1 = G.to(units.kpc * units.m**2 /( units.Msun * units.s**2) )
 K = K.to(units.Msun * units.kpc**2 / (units.s**2 * units.Kelvin))
 
 
@@ -86,25 +87,30 @@ def mass_hernquist(a, r, M):
     Mass = M * r**2 / (r+a)**2
     return Mass
 
-def vc_hernquist(a, r, M):
+def vc_hernquist(a, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
     a = a*units.kpc
-    r = r * units.kpc
+    r = np.sqrt(x**2 + y**2 + z**2)
     M = M * units.Msun
     vc = np.sqrt(G*M*r/(r+a)**2)
     vc = vc.to(units.km / units.s)
     return vc
 
-def a_hernquist(a, x, y, z):
+def a_hernquist(a, x, y, z, M):
     a = a * units.kpc
     x = x * units.kpc
     y = y * units.kpc
     z = z * units.kpc
     r = np.sqrt(x**2 + y**2 + z**2)
-    #M = M * units.Msun
-    Ax =  - 1.0 * x  / ( r * (r + a)**2)
-    Ay =  - 1.0 * y  / ( r * (r + a)**2)
-    Az =  - 1.0 * z  / ( r * (r + a)**2)
-    #A = A.to(units.km / units.s**2) 
+    M = M * units.Msun
+    Ax =  - 1.0 * x * G1 * M / ( r * (r + a)**2)
+    Ay =  - 1.0 * y * G1 * M / ( r * (r + a)**2)
+    Az =  - 1.0 * z * G1 * M / ( r * (r + a)**2)
+    Ax = Ax.to(units.km / units.s**2) 
+    Ay = Ay.to(units.km / units.s**2)
+    Az = Az.to(units.km / units.s**2)
     return Ax, Ay, Az
 
 #+++++++++++++++++++ SIS (Singular Isothermal Sphere) ++++++++++++++++++++
@@ -158,28 +164,34 @@ def a_sis(a, x, y, z, v):
 
 #+++++++++++++++++++++++ Miyamoto-Nagai +++++++++++++++++++++++++++
 
-def pot_mn(a, b, z, r, M):
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
-    r = r*units.kpc
-    phi = - G*M / (np.sqrt(r**2 + ( a + np.sqrt( z**2 + b**2 ))**2 ) )
-    return phi
-
-def dens_mn(a, b, z, R, M):
+def pot_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
     z = z * units.kpc
     a = a * units.kpc
     b = b * units.kpc
-    R = R * units.kpc
+    R = np.sqrt(x**2 + y**2)
+    phi = - G*M / (np.sqrt(R**2 + ( a + np.sqrt( z**2 + b**2 ))**2 ) )
+    return phi
+
+def dens_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
+    R = np.sqrt(x**2 + y**2)
     rho = (b**2 * M / (4*np.pi)) * (a*R**2 + ( a + 3*(np.sqrt(z**2 + b**2)))*( a + np.sqrt(z**2 + b**2))**2 ) /( ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(5./2.) * (z**2 + b**2)**(3./2.)) )
     return rho.value
 
 
-def vc_mn(a, b, z, R, M):
+def vc_mn(a, b, x, y, z,  M):
+    x = x * units.kpc
+    y = y * units.kpc
     z = z * units.kpc
     a = a * units.kpc
     b = b * units.kpc
-    R = R * units.kpc
+    R = np.sqrt(x**2 + y**2)
     M = M * units.Msun
     factor = R**2 + (a + np.sqrt(z**2 + b**2))**2
     vc = np.sqrt( G * M  * R**2 / factor**(3.0/2.0)) 
@@ -187,27 +199,29 @@ def vc_mn(a, b, z, R, M):
     return vc
 
 
-def mass_mn(a, b, z, R, M):
+def mass_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
     z = z * units.kpc
     a = a * units.kpc
     b = b * units.kpc
-    R = R * units.kpc
+    R = np.sqrt(x**2 + y**2)
     M = M * units.Msun
     v = vc_mn(a.value, b.value, z.value, R.value, M.value)
     mass = v**2 * R / G
     return mass
     
-def a_mn(a, b, x, y, z):
-    x = x*units.kpc
-    y = y*units.kpc
-    z = z*units.kpc
-    a = a*units.kpc
-    b = b*units.kpc
+def a_mn(a, b, x, y, z, M):
+    x = x * units.kpc
+    y = y * units.kpc
+    z = z * units.kpc
+    a = a * units.kpc
+    b = b * units.kpc
     R = np.sqrt(x**2 + y**2)
-    #M = M * units.Msun
-    Ax = -  x / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
-    Ay = -  y / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
-    Az = -  z * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
+    M = M * units.Msun
+    Ax = -  x * G * M / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
+    Ay = -  y * G * M / (R**2 + ( a + np.sqrt( z**2 + b**2))**2)**(3.0/2.0)
+    Az = -  z * G * M * (a + np.sqrt(z**2 + b**2)) / ( (R**2 + (a + np.sqrt(z**2 + b**2))**2)**(3.0/2.0) * np.sqrt(z**2 + b**2)  )
     #Ar = Ar.to(units.km / units.s**2)
     #Az = Az.to(units.km / units.s**2)
     return Ax, Ay, Az
@@ -226,7 +240,7 @@ def pot_NFW(c, x, y, z, M):
     phi = -G * M * np.log(1 + r/a) / r
     return phi
 
-def dens_MFW(c, x, y, z, M):
+def dens_NFW(c, x, y, z, M):
     x = x*units.kpc
     y = y*units.kpc
     z = z*units.kpc
@@ -245,7 +259,7 @@ def vc_NFW(c, x, y, z, M):
     Rvir = rvir(M, 0) # here we are working at z=0
     M = M * units.Msun
     a = Rvir / c
-    up = G * M * (np.log(1 + r/a) )
+    up = G * M * (np.log(1 + r/a) - r/(r+a) )
     vc = np.sqrt(up / r)
     vc = vc.to(units.km / units.s)
     return vc
@@ -266,11 +280,12 @@ def a_NFW(c, x, y, z, M):
     z = z*units.kpc
     #M = M * units.Msun
     Rvir = rvir(M, 0) # here we are working at z=0
+    M = M * units.Msun
     a = Rvir / c
     r = np.sqrt(x**2 + y**2 + z**2)
-    ax = 1 / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * x / r
-    ay = 1 / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * y / r
-    az = 1 / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * z / r
+    ax = G * M / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * x / r
+    ay = G * M / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * y / r
+    az = G * M / r**2 * ( r/(r+a) - np.log(1 + r/a) ) * z / r
     return ax, ay, az
 
 #+++++++++++++++++++++++++++++++++++++++++++ Logarithmic Profile +++++++++++++++++++++++
