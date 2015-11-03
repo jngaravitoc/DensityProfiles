@@ -157,12 +157,12 @@ the velocity instead of the total Mass.
 
 
 \begin{equation}\label{eq:rhoNFW}
-\rho_{NFW}(r) = \dfrac{M}{2\pi a^3(r/a) (1 + r/a)^2}
+\rho_{NFW}(r) = \dfrac{M_{vir}}{2\pi a^3(r/a) (1 + r/a)^2}
 \end{equation}
 
 
 \begin{equation}\label{eq:MNFW}
-M_{NFW}(r) =  M  \left(  ln(1 + x) - \frac{x}{1 + x} \right)
+M_{NFW}(r) =  M_{vir}  f(x) / f(c_{vir})
 \end{equation}
 
 Where $x = r/a$, is useful to define the function $f(x)$ as:
@@ -188,7 +188,7 @@ c(M_{vir}) = 9.60  \left( \frac{M_{vir}}{10^{12}h^{-1}M_{\odot}} \right)^{-0.075
 
 
 \begin{equation}\label{vcNFW}
-v_c(r) = \sqrt{\left(\dfrac{M(r)G}{r}\right)} = \sqrt{\left( \dfrac{2 M  \left(  ln(1 + c) - \frac{c}{1 + c} \right)}{r} \right)}
+v_c(r) = \sqrt{\left(\dfrac{M(r)G}{r}\right)} = \sqrt{\left( \dfrac{G M_{vir}  f(x) / f(c_{vir})}{r} \right)}
 \end{equation}
 
 
